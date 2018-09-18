@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="HsOjo&#39;s Blog">
 <meta property="og:description" content="版权声明：本文为博主原创文章，转载请注明出处。  前言某友人做了个Qt/C++ Project，开发环境Qt4.8+VS2017。 开发环境运行程序正常，但发布版在实际环境中无法运行。 首先是Qt对VC2010的依赖，缺失msvc*xxx.dll。 运行库安装后，出现错误： 12CATCH:	Driver not loaded Driver not loadedSQL_ERR:	Database">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-18T08:22:42.201Z">
+<meta property="og:updated_time" content="2018-09-18T08:35:56.402Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于Qt插件无法加载的问题">
 <meta name="twitter:description" content="版权声明：本文为博主原创文章，转载请注明出处。  前言某友人做了个Qt/C++ Project，开发环境Qt4.8+VS2017。 开发环境运行程序正常，但发布版在实际环境中无法运行。 首先是Qt对VC2010的依赖，缺失msvc*xxx.dll。 运行库安装后，出现错误： 12CATCH:	Driver not loaded Driver not loadedSQL_ERR:	Database">
@@ -192,7 +192,9 @@
 <figure class="highlight sqf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CATCH</span>:	<span class="built_in">Driver</span> <span class="built_in">not</span> loaded <span class="built_in">Driver</span> <span class="built_in">not</span> loaded</span><br><span class="line">SQL_ERR:	Database Open Fail</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
 <h1 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h1><p>经过一番研究，发现是没有安装Qt环境的情况下，需要手动定义<code>QT_PLUGIN_PATH</code>。</p>
-<p>由于各种操作都无法在程序中添加环境变量，而我又还不熟悉C++。</p>
+<p>首先把Qt下的<strong>plugins</strong>目录复制到程序目录，然后配置环境变量即可运行。</p>
+<p>但是，让用户配置环境变量，显然是不现实的事情，所以得让程序实现。</p>
+<p>又由于我又还不熟悉C++，尝试了各种操作都无法在程序中添加环境变量。</p>
 <p>所以采用了了一个折中的方案，使用bat文件启动程序（配置环境变量）。</p>
 <figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line"><span class="built_in">set</span> QT_PLUGIN_PATH=plugins</span><br><span class="line">BoringMachine_03.exe</span><br></pre></td></tr></table></figure>
 
@@ -485,6 +487,14 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">crack</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">apihook</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">ubuntu</a>
               </li>
              
@@ -497,27 +507,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">crack</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">apihook</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">autofs</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">nfs</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">centos</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">yum</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -537,7 +531,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+                <a href="javascript:void(0)" class="js-tag color2">centos</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">yum</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -553,7 +551,7 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -565,11 +563,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">mpk</a>
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">other</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">mpk</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -581,19 +583,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">nis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">nova</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">dnf</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">npk</a>
+                <a href="javascript:void(0)" class="js-tag color4">nis</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -609,7 +603,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">php</a>
+                <a href="javascript:void(0)" class="js-tag color4">dnf</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">npk</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -629,6 +627,10 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">php</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">pyinstaller</a>
               </li>
              
@@ -645,14 +647,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">windows</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">systemd</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">shell</a>
               </li>
              
@@ -661,23 +655,19 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">systemd</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">windows</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">vmware</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">vbox</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">win10</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">teamviewer</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">cmd</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -690,6 +680,18 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">thinkcmf</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">win10</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">teamviewer</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">cmd</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -197,9 +197,9 @@
 <li>如需使用nfs挂载，则需安装对应的支持库<strong>nfs-utils-lib</strong>。</li>
 </ul>
 <h2 id="etc-auto-master"><a href="#etc-auto-master" class="headerlink" title="/etc/auto.master"></a>/etc/auto.master</h2><p>这里我在最后添加了/home的挂载项（几乎原封不动）。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Sample auto.master file</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> This is an automounter map and it has the following format</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> key [ -mount-options-separated-by-comma ] location</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> For details of the format look at autofs(5).</span></span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line">/misc   /etc/auto.misc</span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> NOTE: mounts <span class="keyword">done</span> from a hosts map will be mounted with the</span></span><br><span class="line"><span class="meta">#</span><span class="bash">       <span class="string">"nosuid"</span> and <span class="string">"nodev"</span> options unless the <span class="string">"suid"</span> and <span class="string">"dev"</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash">       options are explicitly given.</span></span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line">/net    -hosts</span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Include central master map <span class="keyword">if</span> it can be found using</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> nsswitch sources.</span></span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Note that <span class="keyword">if</span> there are entries <span class="keyword">for</span> /net or /misc (as</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> above) <span class="keyword">in</span> the included master map any keys that are the</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> same will not be seen as the first <span class="built_in">read</span> key seen takes</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> precedence.</span></span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line"></span><br><span class="line">/home   /etc/auto.home</span><br><span class="line"></span><br><span class="line">+auto.master</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span></span><br><span class="line"><span class="meta">#</span> Sample auto.master file</span><br><span class="line"><span class="meta">#</span> This is an automounter map and it has the following format</span><br><span class="line"><span class="meta">#</span> key [ -mount-options-separated-by-comma ] location</span><br><span class="line"><span class="meta">#</span> For details of the format look at autofs(5).</span><br><span class="line"><span class="meta">#</span></span><br><span class="line">/misc   /etc/auto.misc</span><br><span class="line"><span class="meta">#</span></span><br><span class="line"><span class="meta">#</span> NOTE: mounts done from a hosts map will be mounted with the</span><br><span class="line"><span class="meta">#</span>       "nosuid" and "nodev" options unless the "suid" and "dev"</span><br><span class="line"><span class="meta">#</span>       options are explicitly given.</span><br><span class="line"><span class="meta">#</span></span><br><span class="line">/net    -hosts</span><br><span class="line"><span class="meta">#</span></span><br><span class="line"><span class="meta">#</span> Include central master map if it can be found using</span><br><span class="line"><span class="meta">#</span> nsswitch sources.</span><br><span class="line"><span class="meta">#</span></span><br><span class="line"><span class="meta">#</span> Note that if there are entries for /net or /misc (as</span><br><span class="line"><span class="meta">#</span> above) in the included master map any keys that are the</span><br><span class="line"><span class="meta">#</span> same will not be seen as the first read key seen takes</span><br><span class="line"><span class="meta">#</span> precedence.</span><br><span class="line"><span class="meta">#</span></span><br><span class="line"></span><br><span class="line">/home   /etc/auto.home</span><br><span class="line"></span><br><span class="line">+auto.master</span><br></pre></td></tr></table></figure>
 <h2 id="etc-auto-home"><a href="#etc-auto-home" class="headerlink" title="/etc/auto.home"></a>/etc/auto.home</h2><p>而这个文件就简单了，由于是自己创建的，能简则简，这里实现了对nfs的挂载。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> *可以匹配任意名称，而最后的&amp;则是取得匹配到的名称。</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 比如我访问本机的/home/user1，当该目录没有挂载时，会自动挂载host机器上的/home/user1到本机。</span></span><br><span class="line">*       -fstype=nfs     host:/home/&amp;</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> *可以匹配任意名称，而最后的&amp;则是取得匹配到的名称。</span><br><span class="line"><span class="meta">#</span> 比如我访问本机的/home/user1，当该目录没有挂载时，会自动挂载host机器上的/home/user1到本机。</span><br><span class="line">*       -fstype=nfs     host:/home/&amp;</span><br></pre></td></tr></table></figure>
 
       
 
@@ -471,14 +471,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">android</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">emoji</a>
               </li>
              
@@ -491,19 +483,27 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">crack</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">apihook</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">vsftpd</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">ftp</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">android</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">crack</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">apihook</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -519,19 +519,19 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">centos</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">yum</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">autofs</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">nfs</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">centos</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">yum</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -551,10 +551,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">blog</a>
               </li>
              
@@ -564,6 +560,18 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">libvirt</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">kvm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -583,19 +591,19 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">libvirt</a>
+                <a href="javascript:void(0)" class="js-tag color4">ntp</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">kvm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">other</a>
+                <a href="javascript:void(0)" class="js-tag color4">ssh</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">mpk</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">other</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -607,19 +615,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">nova</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">nis</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">mitaka</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">rdo</a>
+                <a href="javascript:void(0)" class="js-tag color5">nova</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -628,6 +628,14 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">npk</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">mitaka</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">rdo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -643,14 +651,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">pyinstaller</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">pyqt5</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">php</a>
               </li>
              
@@ -660,6 +660,14 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">mail</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">pyinstaller</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">pyqt5</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -679,19 +687,19 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">vmware</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">vbox</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">shell</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">system</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">vmware</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">vbox</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -707,15 +715,15 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">cmd</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">win10</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">teamviewer</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">cmd</a>
               </li>
              
               <li class="article-tag-list-item">
